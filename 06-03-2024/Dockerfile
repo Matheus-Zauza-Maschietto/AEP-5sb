@@ -2,8 +2,8 @@ FROM node:latest
 
 WORKDIR /app
 
-COPY ./project /app
+COPY ./project .
 
 RUN npm i
 
-CMD ["node", "app.js"]
+CMD ["node", "app.ts"]     
