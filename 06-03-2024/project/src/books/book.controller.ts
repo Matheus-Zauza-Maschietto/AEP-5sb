@@ -8,23 +8,45 @@ class BookController {
     }
 
     async findAll(req: Request, res: Response) {
-        const books = await new BookService().findAll()
-        return res.json(books)
+        try{
+            const books = await new BookService().findAll()
+            res.sendStatus(200)
+            return res.json(books)
+        }
+        catch{
+            return res.sendStatus(400)
+        }
     }
 
     async findById(req: Request, res: Response) {
-        const books = await new BookService().findById(req.params?.id)
-        return res.json(books)
+        try {
+            const books = await new BookService().findById(req.params?.id)
+            res.sendStatus(200)
+            return res.json(books)    
+        } catch {
+            return res.sendStatus(400)
+        }
     }
 
     async updateById(req: Request, res: Response) {
-        const books = await new BookService().updateById(req.params?.id, req.body)
-        return res.json(books)
+        try {
+            const books = await new BookService().updateById(req.params?.id, req.body)
+            res.sendStatus(200)
+            return res.json(books)
+        } catch {
+            return res.sendStatus(400)
+        }
+
     }
 
     async deleteById(req: Request, res: Response) {
-        const books = await new BookService().deleteById(req.params?.id)
-        return res.sendStatus(204)
+        try {
+            const books = await new BookService().deleteById(req.params?.id)
+            return res.sendStatus(204)
+        } catch {
+            return res.sendStatus(400)
+        }
+
     }
 }
 
