@@ -4,18 +4,26 @@ services:
   db: 
     image: mongo:latest
     container_name: mongodb
+    env_file:
+      - ./env/db.env
     restart: always
     ports:
       - 27017:27017
     volumes:
       - mongodb_data:/data/db
+    networks:
+      - node-network
 
   api:
-    build: .
+    image: node-api-img
     container_name: node-api
     restart: always
     ports:
-      - 5000:5000
-
+      - 3000:3000
+    networks:
+      - node-network
 volumes: 
   mongodb_data:
+
+networks:
+  node-network:

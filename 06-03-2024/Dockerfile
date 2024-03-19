@@ -6,4 +6,4 @@ COPY ./project .
 
 RUN npm i
 
-CMD ["node", "app.ts"]     
+CMD ["npm", "start"]     
